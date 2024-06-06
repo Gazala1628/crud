@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/users', [employee::class, 'listUsers'])->name('api.users');
+Route::delete('/users/delete/{id}', [employee::class, 'deleteUser'])->name('users.delete');

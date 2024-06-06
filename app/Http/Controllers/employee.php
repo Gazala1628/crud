@@ -59,8 +59,11 @@ class employee extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deleteUser($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect('api/users')->with('success', 'User deleted successfully.');
     }
 }

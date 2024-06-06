@@ -13,7 +13,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Employe _id</th>
+                    <th>Employe_id</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>City</th>
@@ -31,7 +31,7 @@
                           
                         <td>
                             <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                            <form action="#" method="POST" style="display:inline-block;">
+                            <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
