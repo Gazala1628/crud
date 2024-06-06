@@ -13,7 +13,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Employye _id</th>
+                    <th>Employe _id</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>City</th>
