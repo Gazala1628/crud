@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -66,4 +66,38 @@ class employee extends Controller
 
         return redirect('api/users')->with('success', 'User deleted successfully.');
     }
+    public function showLoginForm()
+    {
+        return view('login');
+    }
+
+     
+    public function login(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    $credentials = $request->only('email', 'password');
+    $remember = $request->has('remember');
+
+    if (Auth::attempt($credentials, $remember)) {
+        return redirect()->route('profile', ['id' => Auth::id()])->with('success', 'Login successful.');
+    } else {
+        return redirect()->back()->withErrors(['email' => 'Invalid email or password.'])->withInput();
+    }
+}
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('api/login')->with('success', 'Logout successful.');
+    }
+    public function profile($id)
+{  
+    $users = User::findOrFail($id);
+        // Pass the authenticated user and the list of users to the profile view
+        return view('profile', compact('users'));
+    }  
 }
