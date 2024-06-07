@@ -7,30 +7,7 @@ use App\Models\User;
 
 class employee extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
+   
     /**
      * Display the specified resource.
      */
@@ -43,19 +20,31 @@ class employee extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function editUser($id)
     {
-        //
+        $user = user::findOrFail($id);
+        return view('edit_user', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function updateUser(Request $request, $id)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required',
+            'city' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+        ]);
 
+        $user = user::findOrFail($id);
+        $user->update([
+            'name' => $request->name,
+            'city' => $request->city,
+            'phone' => $request->phone,
+            'email' => $request->email,
+        ]);
+
+        return redirect('api/users')->with('success', 'User updated successfully.');
+    }
     /**
      * Remove the specified resource from storage.
      */

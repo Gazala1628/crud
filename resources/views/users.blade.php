@@ -30,7 +30,7 @@
                         <td>{{ $user->city }}</td>
                           
                         <td>
-                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>
                             <form action="{{ route('users.delete', $user->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
