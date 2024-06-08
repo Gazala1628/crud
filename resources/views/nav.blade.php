@@ -16,7 +16,9 @@
         <div class="container">
           <ul class="nav navbar-nav">
             <li><a href="#">Insert</a></li>
-            <li><a href="#">View</a></li>
+            <li><a href="{{ route('api.users') }}">View</a></li>
+            <li><a href="{{ route('login') }}">Login</a></li>
+
           </ul>
         </div>
     </nav>
